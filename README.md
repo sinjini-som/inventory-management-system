@@ -39,25 +39,10 @@ inventory-management-system/
 
 **orders**: id, product_id (FK), quantity_ordered, order_date, status
 
-## Setup & Run
 
-```bash
-pip install -r requirements.txt
-python app.py
-```
-
-Then open **http://127.0.0.1:5000** in your browser.
-
-A SQLite database (`inventory.db`) is created automatically on first run
-and seeded with 5 sample products so the app is immediately usable.
 
 ## Tech Stack
 
 Python, Flask, SQLite, Jinja2 templates, HTML/CSS
 
-## Possible Extensions
 
-- Add user authentication (admin vs staff roles)
-- Add a REST API layer (JSON endpoints) alongside the HTML views
-- Add sales analytics (most ordered products, revenue over time)
-- Switch SQLite to PostgreSQL/MySQL for production use
