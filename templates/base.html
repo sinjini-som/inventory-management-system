@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management System</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            color: #222;
+        }
+        nav {
+            background: #1c2b39;
+            padding: 14px 30px;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        nav a:hover { color: #ffb84d; }
+        nav .brand {
+            font-weight: 700;
+            font-size: 18px;
+            margin-right: 20px;
+            color: #ffb84d;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        h1 { margin-top: 0; font-size: 24px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        th { background: #f0f2f5; }
+        tr.low-stock { background: #fff4e5; }
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.low { background: #ffb84d; color: #442800; }
+        .badge.ok { background: #d4f4dd; color: #1a5c33; }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #1c2b39;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: #10202c; }
+        .btn.danger { background: #c0392b; }
+        .btn.danger:hover { background: #922b21; }
+        .btn.small { padding: 5px 10px; font-size: 12px; }
+        form.inline { display: inline; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 4px; font-size: 14px; font-weight: 600; }
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .flash {
+            padding: 10px 16px;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .flash.success { background: #d4f4dd; color: #1a5c33; }
+        .flash.error { background: #fbdada; color: #922b21; }
+        .actions { margin-bottom: 16px; }
+        .actions a { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="brand">📦 InvenTrack</span>
+        <a href="{{ url_for('index') }}">Dashboard</a>
+        <a href="{{ url_for('add_product') }}">Add Product</a>
+        <a href="{{ url_for('place_order') }}">Place Order</a>
+        <a href="{{ url_for('view_orders') }}">Order History</a>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

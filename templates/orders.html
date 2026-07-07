@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Order History</h1>
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Quantity Ordered</th>
+        <th>Order Date</th>
+        <th>Status</th>
+    </tr>
+    {% for o in orders %}
+    <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.product_name }}</td>
+        <td>{{ o.quantity_ordered }}</td>
+        <td>{{ o.order_date }}</td>
+        <td><span class="badge ok">{{ o.status }}</span></td>
+    </tr>
+    {% endfor %}
+</table>
+{% if not orders %}
+<p>No orders placed yet.</p>
+{% endif %}
+{% endblock %}
